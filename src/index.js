@@ -10,10 +10,6 @@ app.get('/',(req,res) => {
   res.send("<h1> okey baybe</h1>")
 })
 
-app.get('/chat',(req,res)=> {
-  res.sendFile(__dirname+'/view/index.html')
-})
-
 io.on('connection',(socket)=> {
 
   console.log("a user connect");
@@ -23,6 +19,12 @@ io.on('connection',(socket)=> {
     console.log("message "+msg);
     io.emit('chat message',msg)
   })
+
+app.get('/chat',(req,res)=> {
+  res.sendFile(__dirname+'/view/index.html')
+})
+
+
 
 
   socket.on('disconnect',()=>{
